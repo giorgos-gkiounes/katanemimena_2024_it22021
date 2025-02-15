@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>transactions</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <div th:if="${ not#lists.isEmpty(transactions)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>project id</th>
+                <th>amount</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction : ${transactions}">
+                <td th:text="${transaction.id}"></td>
+                <td th:text="${transaction.projectId}"></td>
+                <td th:text="${transaction.amount}"></td>
+
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(transactions)}">
+        No Transaction found!
+    </div>
+    <a href="/transactions/create" class="btn btn-primary" role="button">Create new Transaction</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Goal Amount</th>
+            <th>Current Amount</th>
+            <th>Visible</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="project : ${projects}">
+            <td th:text="${project.id}"></td>
+            <td th:text="${project.title}"></td>
+            <td th:text="${project.description}"></td>
+            <td th:text="${project.goalAmount}"></td>
+            <td th:text="${project.currentAmount}"></td>
+            <td th:text="${project.isVisible ? 'Yes' : 'No'}"></td>
+            <td>
+                <form th:action="@{/admin/projects/{id}/toggle-visibility(id=${project.id})}" method="post">
+                    <button type="submit" th:text="${project.isVisible ? 'Make Invisible' : 'Make Visible'}"></button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

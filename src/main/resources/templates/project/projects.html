@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Courses</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <div th:if="${ not#lists.isEmpty(projects)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>title</th>
+                <th>description</th>
+                <th>current amount </th>
+                <th>goal amount </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="project : ${projects}">
+                <td th:text="${project.title}"></td>
+                <td th:text="${project.description}"></td>
+                <td th:text="${project.currentAmount}"></td>
+                <td th:text="${project.goalAmount}"></td>
+
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(projects)}">
+        No projects found!
+    </div>
+    <a  href="/project/new" class="btn btn-primary" role="button">Create new project</a>
+</div>
+</body>
+</html>

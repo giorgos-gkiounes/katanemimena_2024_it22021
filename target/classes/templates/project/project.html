@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{page_layout/layout}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Course</title>
+</head>
+<body>
+<div layout:fragment="main-content">
+    <form action="#" th:action="@{/project/new}" th:object="${project}"
+          method="post">
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" class="form-control" th:field="*{title}">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:errorclass="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" class="form-control" th:field="*{description}">
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" th:errorclass="error"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="description">goalAmount</label>
+            <input type="number" id="goalAmount" class="form-control" th:field="*{goalAmount}" th:min="1">
+            <span th:if="${#fields.hasErrors('goalAmount')}" th:errors="*{goalAmount}" th:errorclass="error"></span>
+            <span th:if="*{goalAmount < 0}" style="color: red;">Please enter a non-negative number.</span>
+        </div>
+
+
+
+
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>
